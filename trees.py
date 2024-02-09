@@ -45,7 +45,17 @@ class Node:
             res += root.inorder(root.right)
             res.append(root.data)
         return res
-        
+    def search(self,val):
+        if val<self.data:
+            if self.left is None:
+                return str(val)+" not found"
+            return self.left.search(val)
+        elif val>self.data:
+            if self.right is None:
+                return str(val)+"not found"
+            return self.right.search(val)
+        else:
+            return "Found element "+str(val)
 
 r_val = int(input("Enter root: "))
 root = Node(r_val)
@@ -56,3 +66,7 @@ for i in range(10):
 print("Inorder: ",root.inorder(root))
 print("Preorder: ",root.preorder(root))
 print("Postorder: ",root.postorder(root))
+
+val = int(input("Enter value to search..."))
+
+print(root.search(val))
